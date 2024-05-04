@@ -1,7 +1,5 @@
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
-#include <SPI.h>
-#include <SD.h>
 extern "C"
 {
 #include "ultrasound.h"
@@ -11,7 +9,6 @@ extern "C"
 #define ECHO_PIN 9
 #define BUTTON_PIN 12
 #define ERROR 4
-#define CS_PIN 4
 
 LiquidCrystal_I2C lcd(0x3F, 16, 2);
 
@@ -28,8 +25,6 @@ void setup()
   lcd.init();
   lcd.clear();
   lcd.backlight();
-  // sd card module setup
-  SD.begin(CS_PIN);
   Serial.begin(9600);
 }
 
