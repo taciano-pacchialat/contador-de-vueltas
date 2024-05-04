@@ -1,35 +1,37 @@
 #include "string-queue.h"
 
-typedef struct queue
-{
-  node *head;
-} queue;
-
-// private type definition
-typedef struct node
-{
-  char *data;
-  struct node *next;
-} node;
-
 // private function, creates a node
-node *create_node(char **data)
+node *create_node(char *data)
 {
   node *new_node = (node *)malloc(sizeof(node));
   new_node->next = NULL;
-  new_node->data = strdup(*data);
+  new_node->data = strdup(data);
   return new_node;
+}
+
+/*
+  Creates a new queue.
+  Returns NULL if there was an error during excecution.
+*/
+queue *create_queue()
+{
+  queue *new_queue = (queue *)malloc(sizeof(queue));
+  if (new_queue != NULL)
+  {
+    new_queue->head = NULL;
+  }
+  return new_queue;
 }
 
 /*
   Pushes a value to the list.
   Returns 1 if an error occured, otherwise returns 0.
 */
-int push(queue *queue, char **data)
+int push(queue *queue, char *data)
 {
-  if (queue == NULL || data == NULL || *data == NULL)
+  if (queue == NULL || data == NULL || data[0] == '\0')
     return 1;
-  node *new_node = create_node(*data);
+  node *new_node = create_node(data);
   new_node->next = queue->head;
   queue->head = new_node;
   return 0;
@@ -73,4 +75,17 @@ int size(queue *queue)
     count++;
   }
   return count;
+}
+
+int print_queue(queue *queue)
+{
+  if (queue == NULL)
+    return 1;
+  printf("HEAD -> ");
+  for (node *current = queue->head; current != NULL; current = current->next)
+  {
+    printf("%s -> ", current->data);
+  }
+  printf("NULL\n");
+  return 0;
 }

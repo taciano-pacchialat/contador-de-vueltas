@@ -3,11 +3,7 @@
 
 #include <stdlib.h>
 #include <string.h>
-
-typedef struct queue
-{
-  node *head;
-} queue;
+#include <stdio.h>
 
 // private type definition
 typedef struct node
@@ -16,9 +12,16 @@ typedef struct node
   struct node *next;
 } node;
 
-int push(queue *queue, char **data);
+typedef struct queue
+{
+  node *head;
+} queue;
+
+queue *create_queue();
+int push(queue *queue, char *data);
 char *pull(queue *queue);
 int is_empty(queue *queue);
 int size(queue *queue);
+int print_queue(queue *queue);
 
 #endif
