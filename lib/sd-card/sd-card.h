@@ -1,6 +1,7 @@
-#ifndef BASIC_FUNTIONS
-#define BASIC_FUNTIONS
+#ifndef SD_CARD_INCLUDED
+#define SD_CARD_INCLUDED
 #include <Arduino.h>
-int read_ultrasound(int trig_pin, int echo_pin);
+#include <SD.h>
+#include <SPI.h>
 
 #endif
